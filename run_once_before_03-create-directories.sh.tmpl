@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p ~/.config/{nvim,zed,ghostty}
+mkdir -p ~/Development/{personal,work}
+mkdir -p ~/.local/bin
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_* 2>/dev/null || true
+chmod 644 ~/.ssh/*.pub 2>/dev/null || true
+
