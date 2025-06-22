@@ -1,0 +1,53 @@
+[[ $- != *i* ]] && return
+PS1='[\u@\h \W]\$ '
+
+alias ml4w-hyprland='~/.config/ml4w/apps/ML4W_Hyprland_Settings-x86_64.AppImage'
+
+# all the hooks for vc and prompt
+autoload -Uz compinit promptinit
+compinit
+promptinit
+
+zstyle ':completion:*' file-list all
+zstyle ':completion:*' menu select
+
+autoload -Uz add-zsh-hook vcs_info
+setopt prompt_subst
+
+add-zsh-hook precmd vcs_info
+PROMPT='%F{red}%n%f@%F{red}%m%f %F{blue}%B%~%b%f %F{red}${vcs_info_msg_0_}%f'$'\n'' --> '
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats       '(%b%u%c)'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
+
+# exports and aliases
+alias ls='ls -G'
+alias ll='ls -Gllhr'
+alias la='ls -Ga'
+alias grep='grep --color'
+alias vi='nvim'
+alias vim='nvim'
+alias v='nvim'
+
+export PATH=/usr/local/bin:$PATH
+export PATH=/opt/cuda/bin:$PATH
+export PATH=/opt/zen/:$PATH
+export EDITOR=nvim
+. "$HOME/.local/bin/env"
+
+set -a
+source ~/.env
+set +a
+
+# bun completions
+[ -s "/home/joe/.bun/_bun" ] && source "/home/joe/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
