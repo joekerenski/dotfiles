@@ -1,12 +1,23 @@
 #!/bin/bash
-# Initialize gopass with age encryption if not already done
+
+{{- if eq .chezmoi.os "darwin" }}
+if ! command -v gopass &> /dev/null; then
+    brew install gopass
+fi
+
+{{- else if eq .chezmoi.os "linux" }}
+if ! command -v gopass &> /dev/null; then
+    yay -S --noconfirm gopass
+fi
+{{- end }}
+
 if [ ! -d ~/.local/share/gopass ]; then
     gopass setup --crypto age
 fi
 
-# Clone your password repository if it doesn't exist
 if [ ! -d ~/.local/share/gopass/stores/root/.git ]; then
-    echo "Please clone your gopass repository manually:"
-    echo "gopass clone git@github.com:yourusername/passwords-private.git"
+    echo "Please authenticate and clone your gopass repository:"
+    echo "Use PAT token with git clone https://joekerenski:TOKEN@github.com/joekerenski/private-repo.git ~/.local/share/gopass/stores/root"
+    exit 1
 fi
 
