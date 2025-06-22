@@ -1,0 +1,12 @@
+#!/bin/bash
+# Initialize gopass with age encryption if not already done
+if [ ! -d ~/.local/share/gopass ]; then
+    gopass setup --crypto age
+fi
+
+# Clone your password repository if it doesn't exist
+if [ ! -d ~/.local/share/gopass/stores/root/.git ]; then
+    echo "Please clone your gopass repository manually:"
+    echo "gopass clone git@github.com:yourusername/passwords-private.git"
+fi
+
