@@ -1,0 +1,26 @@
+#!/bin/bash
+{{- if eq .chezmoi.os "linux" }}
+
+mkdir -p ~/.config/systemd/user
+
+cat > ~/.config/systemd/user/ssh-agent.service << 'EOF'
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+EOF
+
+systemctl --user enable ssh-agent
+systemctl --user start ssh-agent
+
+if ! grep -q "AddKeysToAgent yes" ~/.ssh/config 2>/dev/null; then
+    echo "Host *" >> ~/.ssh/config
+    echo "    AddKeysToAgent yes" >> ~/.ssh/config
+fi
+{{- end }}
