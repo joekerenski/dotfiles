@@ -25,12 +25,9 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 1
 vim.g.netrw_browse_split = 3
 vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 25
+vim.g.netrw_winsize = 50
 
 vim.env.FZF_DEFAULT_OPTS = "--bind=tab:down,btab:up"
-
-vim.cmd('colorscheme unokai')
-syntax = on
 
 -- all functions & autocommands
 vim.schedule(function()
@@ -73,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- keymaps
 
-vim.keymap.set('n', '<leader>e', ':Tex<CR>', { desc = 'Open netrw file explorer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>e', ':Sex<CR>', { desc = 'Open netrw file explorer', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gg', ':Neogit<CR>', { desc = 'Open Neogit', noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<Esc>', ':nohls<CR><Esc>', { noremap = true, silent = true })
@@ -116,7 +113,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
       "ibhagwan/fzf-lua",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
       keys = {
         -- File search
         { "<leader><leader>", "<cmd>FzfLua files<cr>", desc = "Find Files" },
@@ -147,7 +143,7 @@ require("lazy").setup({
           width = 0.9,
           height = 0.9,
           preview = {
-            layout = "horizontal",
+            layout = "vertical",
           }
         }
       },
@@ -163,13 +159,21 @@ require("lazy").setup({
         end,
     },
     {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+    },
+    {
         "https://github.com/nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         config = function()
             require("lualine").setup {
                 options = { 
-                    theme = 'gruvbox',
-                    component_separators = ' '
+                    theme = 'tokyonight-night',
+                    component_separators = '|',
+                    section_separators = '',
+                    globalstatus = true
                 },
             }
         end,
@@ -179,11 +183,9 @@ require("lazy").setup({
       version = "^5.0.0",
       dependencies = {
         "nvim-lua/plenary.nvim",
-        { "m00qek/baleia.nvim", tag = "v1.3.0" },
       },
       config = function()
         vim.g.compile_mode = {
-            baleia_setup = true,
             bang_expansion = true,
         }
       end
@@ -203,5 +205,48 @@ require("lazy").setup({
           desc = "Buffer Local Keymaps (which-key)",
         },
       },
+    },
+    {
+      "hrsh7th/nvim-cmp",
+      dependencies = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+      },
+      event = "InsertEnter",
+      config = function()
+        local cmp = require("cmp")
+
+        cmp.setup({
+          snippet = {
+            expand = function(args)
+              vim.fn.feedkeys(args.body, "i")
+            end,
+          },
+
+          mapping = cmp.mapping.preset.insert({
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          }),
+
+          sources = cmp.config.sources({
+            { name = "buffer" },
+            { name = "path" },
+          })
+        })
+
+        cmp.setup.cmdline(':', {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = cmp.config.sources({
+            { name = 'path' }
+          }, {
+            { name = 'cmdline' }
+          })
+        })
+      end,
     }
 })
+
+vim.cmd[[colorscheme tokyonight-night]]
