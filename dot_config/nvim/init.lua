@@ -69,7 +69,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- keymaps
-
 vim.keymap.set('n', '<leader>e', ':Sex<CR>', { desc = 'Open netrw file explorer', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gg', ':Neogit<CR>', { desc = 'Open Neogit', noremap = true, silent = true })
 
@@ -162,21 +161,25 @@ require("lazy").setup({
       "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
-      opts = {},
+      opts = {
+	 on_colors = function(colors)
+	   colors.border = colors.blue2
+	 end,
+      },
     },
     {
-        "https://github.com/nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("lualine").setup {
-                options = { 
-                    theme = 'tokyonight-night',
-                    component_separators = '|',
-                    section_separators = '',
-                    globalstatus = true
-                },
-            }
-        end,
+    "https://github.com/nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+        require("lualine").setup {
+            options = { 
+                theme = 'tokyonight',
+                component_separators = '|',
+                section_separators = '',
+                globalstatus = true
+            },
+        }
+    end,
     },
     {
       "ej-shafran/compile-mode.nvim",
@@ -195,6 +198,7 @@ require("lazy").setup({
       event = "VeryLazy",
       opts = {
         delay = 0,
+        preset = "helix",
       },
       keys = {
         {
@@ -223,12 +227,12 @@ require("lazy").setup({
         end,
           },
 
-          mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        mapping = cmp.mapping.preset.insert({
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           }),
 
           sources = cmp.config.sources({
