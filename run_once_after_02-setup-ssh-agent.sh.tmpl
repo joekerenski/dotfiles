@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+{{- if eq .chezmoi.os "linux" }}
+if command -v systemctl >/dev/null; then
+    systemctl --user enable --now ssh-agent.service 2>/dev/null || true
+fi
+
+grep -qF "ssh-add -q" ~/.zshrc 2>/dev/null ||
+echo 'eval "$(ssh-agent -s)" && ssh-add -q ~/.ssh/github-kerenski ~/.ssh/github-personal ~/.ssh/github-work 2>/dev/null || true' >> ~/.zshrc
+
+{{- else if eq .chezmoi.os "darwin" }}
+grep -qF "AddKeysToAgent yes" ~/.ssh/config 2>/dev/null ||
+echo -e "\nHost *\n  AddKeysToAgent yes\n  UseKeychain yes" >> ~/.ssh/config
+
+ssh-add --apple-use-keychain ~/.ssh/github-kerenski 2>/dev/null || true
+ssh-add --apple-use-keychain ~/.ssh/github-personal 2>/dev/null || true
+ssh-add --apple-use-keychain ~/.ssh/github-work 2>/dev/null || true
+
+{{- end }}
+
+echo "[INFO] SSH agent setup complete"
+

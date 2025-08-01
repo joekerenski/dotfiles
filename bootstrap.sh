@@ -1,14 +1,4 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -xe
 
-echo "Starting fresh system setup..."
-
-if ! command -v chezmoi &> /dev/null; then
-    sh -c "$(curl -fsLS get.chezmoi.io)"
-fi
-
-chezmoi init --apply joekerenski/dotfiles
-
-echo "[OK]      Setup complete! Your system is ready."
-echo "[INFO]    Don't forget to clone your gopass repository with a github PAT."
-
+chezmoi init --apply --verbose git@github.com:kerenski/dotfiles.git

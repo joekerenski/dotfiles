@@ -1,16 +1,33 @@
-# System Setup from Scratch
+# Setup from scratch on a _virgin_ system (arch btw)
 
-Just run this script, dont look into the bash files, never worry about security
-ever, we are all acting on vibes here. Script works for macOS and arch:
+Make sure gopass, chezmoi, age and git are installed.
+The gopass templates will error out at first,
+then work after gopass has been set up.
+
+1. Run chezmoi
 
 ```console
-curl -fsSL https://raw.githubusercontent.com/joekerenski/dotfiles-public/main/bootstrap.sh | bash
+chezmoi init --apply --verbose git@github.com:kerenski/dotfiles.git
 ```
 
-And we are done!
+2. Run gopass
 
-## Why?
+Without ssh:
 
-I like to periodically nuke my system and rebuild from scratch. Chezmoi and
-Gopass seem to be the perfect choices to recover my complete dev environment
-from scratch without much hassle both on macOS and arch.
+```console
+gopass clone https://username:<pat-token>@github.com/username/<private-repo-name>.git --crypto=age
+```
+
+With ssh:
+
+```console
+gopass clone git@github.com:<username>/<private-repo-name>.git --crypto=age
+```
+
+Rerun chezmoi to populate templates:
+
+```console
+chezmoi apply
+```
+
+And we are done.
