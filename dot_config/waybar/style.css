@@ -1,0 +1,244 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    min-height: 0;
+    font-weight: 500;
+}
+
+window#waybar {
+    background: #1a1b26;
+    color: #c0caf5;
+    padding: 4px 8px;
+}
+
+#workspaces button {
+    padding: 4px 8px;
+    margin: 0 2px;
+    background: transparent;
+    color: #565f89;
+    font-weight: 600;
+}
+
+#workspaces button.active {
+    background: transparent;
+    color: #7aa2f7;
+}
+
+#clock {
+    color: #7dcfff;
+    font-weight: 600;
+}
+
+#cpu, #memory, #custom-gpu, #clock, #network, #pulseaudio {
+    background: transparent;
+    padding: 4px 8px;
+    margin: 0 4px;
+    color: #c0caf5;
+    font-weight: 500;
+}
+
+#tray {
+    background: transparent;
+    padding: 0 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#network {
+    color: #7dcfff;
+}
+
+#network.disconnected {
+    color: #f7768e;
+}
+
+#network.wifi {
+    color: #9ece6a;
+}
+
+#network.ethernet {
+    color: #e0af68;
+}
+
+#custom-power {
+    background: transparent;
+    color: #f7768e;
+    padding: 4px 8px;
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#pulseaudio {
+    color: #bb9af7;
+}
+
+#pulseaudio.muted {
+    color: #f7768e;
+}
+
+#pulseaudio.bluetooth {
+    color: #7dcfff;
+}
+
+#cpu {
+    color: #e0af68;
+}
+
+#memory {
+    color: #9ece6a;
+}
+
+#custom-gpu {
+    color: #bb9af7;
+}
+
+/* * { */
+/*     border: none; */
+/*     border-radius: 0; */
+/*     font-family: "JetBrains Mono", monospace; */
+/*     font-size: 14px; */
+/*     min-height: 0; */
+/*     font-weight: 500; */
+/* } */
+/**/
+/* window#waybar { */
+/*     background: linear-gradient(135deg, #1a1b26 0%, #16161e 100%); */
+/*     color: #c0caf5; */
+/*     padding: 6px 12px; */
+/*     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); */
+/*     border-bottom: 1px solid rgba(116, 199, 236, 0.1); */
+/* } */
+/**/
+/* #workspaces button { */
+/*     padding: 6px 12px; */
+/*     margin: 0 3px; */
+/*     background: transparent; */
+/*     color: #565f89; */
+/*     border-radius: 8px; */
+/*     font-weight: 600; */
+/* } */
+/**/
+/* #workspaces button.active { */
+/*     background: linear-gradient(135deg, #7aa2f7 0%, #bb9af7 100%); */
+/*     color: #1a1b26; */
+/*     box-shadow: 0 4px 12px rgba(122, 162, 247, 0.3); */
+/* } */
+/**/
+/* #workspaces button:hover { */
+/*     background: rgba(36, 40, 59, 0.8); */
+/*     color: #bb9af7; */
+/*     box-shadow: 0 2px 8px rgba(187, 154, 247, 0.2); */
+/* } */
+/**/
+/* #clock { */
+/*     color: #7dcfff; */
+/*     font-weight: 600; */
+/*     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); */
+/* } */
+/**/
+/* #cpu, #memory, #custom-gpu, #clock, #network, #pulseaudio { */
+/*     background: rgba(36, 40, 59, 0.8); */
+/*     padding: 8px 16px; */
+/*     margin: 0 3px; */
+/*     border-radius: 12px; */
+/*     color: #c0caf5; */
+/*     min-width: 80px; */
+/*     border: 1px solid rgba(116, 199, 236, 0.1); */
+/*     font-weight: 500; */
+/* } */
+/**/
+/* #cpu:hover, #memory:hover, #custom-gpu:hover, #clock:hover, #network:hover, #pulseaudio:hover { */
+/*     background: rgba(65, 72, 104, 0.9); */
+/*     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+/* } */
+/**/
+/* #tray { */
+/*     background: transparent; */
+/*     padding: 0 8px; */
+/* } */
+/**/
+/* #tray > .passive { */
+/*     -gtk-icon-effect: dim; */
+/* } */
+/**/
+/* #tray > .needs-attention { */
+/*     -gtk-icon-effect: highlight; */
+/*     background-color: rgba(247, 118, 142, 0.2); */
+/*     border-radius: 8px; */
+/* } */
+/**/
+/* #network { */
+/*     color: #7dcfff; */
+/* } */
+/**/
+/* #network.disconnected { */
+/*     color: #f7768e; */
+/*     background: rgba(247, 118, 142, 0.15); */
+/*     border-color: rgba(247, 118, 142, 0.3); */
+/* } */
+/**/
+/* #network.wifi { */
+/*     color: #9ece6a; */
+/*     background: rgba(158, 206, 106, 0.15); */
+/*     border-color: rgba(158, 206, 106, 0.3); */
+/* } */
+/**/
+/* #network.ethernet { */
+/*     color: #e0af68; */
+/*     background: rgba(224, 175, 104, 0.15); */
+/*     border-color: rgba(224, 175, 104, 0.3); */
+/* } */
+/**/
+/* #custom-power { */
+/*     background: linear-gradient(135deg, #f7768e 0%, #ff7a93 100%); */
+/*     min-height: 24px; */
+/*     color: #1a1b26; */
+/*     padding: 8px 16px; */
+/*     border-radius: 12px; */
+/*     margin-left: 8px; */
+/*     font-size: 14px; */
+/*     font-weight: 600; */
+/*     box-shadow: 0 2px 8px rgba(247, 118, 142, 0.3); */
+/* } */
+/**/
+/* #custom-power:hover { */
+/*     background: linear-gradient(135deg, #ff7a93 0%, #f7768e 100%); */
+/*     box-shadow: 0 4px 16px rgba(247, 118, 142, 0.4); */
+/* } */
+/**/
+/* #pulseaudio { */
+/*     color: #bb9af7; */
+/* } */
+/**/
+/* #pulseaudio.muted { */
+/*     background: rgba(247, 118, 142, 0.2); */
+/*     color: #f7768e; */
+/*     border-color: rgba(247, 118, 142, 0.4); */
+/* } */
+/**/
+/* #pulseaudio.bluetooth { */
+/*     color: #7dcfff; */
+/*     background: rgba(125, 207, 255, 0.15); */
+/*     border-color: rgba(125, 207, 255, 0.3); */
+/* } */
+/**/
+/* #cpu { */
+/*     color: #e0af68; */
+/* } */
+/**/
+/* #memory { */
+/*     color: #9ece6a; */
+/* } */
+/**/
+/* #custom-gpu { */
+/*     color: #bb9af7; */
+/* } */

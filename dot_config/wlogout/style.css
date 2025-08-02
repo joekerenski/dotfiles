@@ -1,0 +1,65 @@
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(26, 27, 38, 0.8);  /* Tokyo Night background with transparency */
+}
+
+button {
+    color: #c0caf5;
+    font-size: 16px;
+    background-color: #24283b;
+    border: 2px solid #414868;
+    border-radius: 15px;  /* Nice rounded corners */
+    margin: 8px;
+    padding: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;  /* Smaller icons */
+    min-width: 80px;   /* Much smaller buttons */
+    min-height: 80px;  /* Much smaller buttons */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:focus,
+button:active,
+button:hover {
+    background-color: #414868;
+    border-color: #7aa2f7;
+    color: #7aa2f7;
+    outline-style: none;
+    box-shadow: 0 6px 12px rgba(122, 162, 247, 0.3);
+}
+
+/* Container to center and size the layout */
+#lock, #logout, #suspend, #hibernate, #shutdown, #reboot {
+    margin: 5px;
+}
+
+/* Specific button styling */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}
+
