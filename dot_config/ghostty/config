@@ -19,6 +19,8 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
+theme=tokyonight
+
 font-family = Iosevka
 window-padding-x = 2
 
