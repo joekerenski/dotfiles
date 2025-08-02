@@ -1,5 +1,7 @@
 encryption = "age"
+{{- if not (stat ".config/gopass/age/identities") }}
 useBuiltinAge = false
+{{- end }}
 
 [age]
 passphrase = true
